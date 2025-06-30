@@ -69,7 +69,52 @@ function _createMails() {
                 removedAt: null,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1652234930500,
+                subject: 'Meeting Reminder',
+                body: 'Don’t forget about the team meeting at 10 AM tomorrow.',
+                isRead: true,
+                sentAt: 1652234930594,
+                removedAt: null,
+                from: 'boss@company.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1641123930500,
+                subject: 'Discount Offer!',
+                body: 'Get 30% off your next purchase. Limited time only.',
+                isRead: false,
+                sentAt: 1641123930594,
+                removedAt: null,
+                from: 'sales@shopnow.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1630012930500,
+                subject: 'Trip Photos 📸',
+                body: 'Here are the photos from our trip to the mountains. So fun!',
+                isRead: true,
+                sentAt: 1630012930594,
+                removedAt: null,
+                from: 'friend@travelers.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: utilService.makeId(),
+                createdAt: 1629901830500,
+                subject: 'Password Change Requested',
+                body: 'We noticed a request to change your password. Was this you?',
+                isRead: false,
+                sentAt: 1629901830594,
+                removedAt: null,
+                from: 'security@safeweb.com',
+                to: 'user@appsus.com'
             }
+
 
         ]
         utilService.saveToStorage(MAIL_KEY, mails)
