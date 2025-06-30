@@ -1,8 +1,13 @@
-import { loadFromStorage, makeId, saveToStorage } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
 _createMails()
+
+const loggedinUser = {
+    email: 'user@appsus.com',
+    fullname: 'MahatmaAppsus'
+}
 
 export const mailService = {
     query,
@@ -16,13 +21,13 @@ export const mailService = {
 
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
-        .then(mails => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.vendor))
-            }
-            return mails
-        })
+    // .then(mails => {
+    //     if (filterBy.txt) {
+    //         const regExp = new RegExp(filterBy.txt, 'i')
+    //         mails = mails.filter(mail => regExp.test(mail.vendor))
+    //     }
+    //     return mails
+    // })
 }
 
 function get(mailId) {
@@ -51,19 +56,27 @@ function getDefaultFilter() {
 }
 
 function _createMails() {
-    let mails = loadFromStorage(MAIL_KEY)
+    let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = [
-            _createMail('audu', 300),
-            _createMail('fiak', 120),
-            _createMail('subali', 50),
-            _createMail('mitsu', 150)
+            {
+                id: utilService.makeId(),
+                createdAt: 1551133930500,
+                subject: 'Miss you!',
+                body: 'Would to catch up',
+                isRead: false,
+                sentAt: 1551133930594,
+                removedAt: null,
+                from: 'momo@momo.com',
+                to: 'user@appsus.com'
+            }
+
         ]
-        saveToStorage(MAIL_KEY, mails)
+        utilService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function _createMail(vendor, speed = 250) {
+function _createMail() {
     const mail = getEmptyMail(vendor, speed)
     mail.id = makeId()
     return mail
