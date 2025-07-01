@@ -1,11 +1,13 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 
+const { Outlet, useParams } = ReactRouterDOM
 const { useState, useEffect } = React
+
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     // const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-
+    const { mailId } = useParams()
     useEffect(() => {
         loadEmails()
     }, [])
@@ -30,11 +32,16 @@ export function MailIndex() {
 
     if (!mails) return <div>Loading...</div>
     return (
-        < section className="mail-index" >
-            <MailList mails={mails}
-                onRemoveMail={onRemoveMail} />
-        </section >
-    )
+        <section className="mail-index" >
+            {!mailId ? <MailList mails={mails}
+                onRemoveMail={onRemoveMail} /> :
+                <Outlet />}
+        </section>
 
+
+    )
 }
+
+
+
 

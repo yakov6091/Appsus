@@ -1,19 +1,27 @@
-export function MailPreview({ mail }) {
-    const { from, body, sentAt } = mail
+const { useNavigate } = ReactRouterDOM
+export function MailPreview({ mail, onRemove }) {
+    const { from, subject, sentAt } = mail
+    const navigate = useNavigate()
+
+    function handleClick() {
+        navigate(`/mail/${mail.id}`)
+
+    }
+
     return (
-        <article className="mail-preview">
+        <li className="mail-preview" onClick={handleClick}>
             <header>
                 <h3>{from}</h3>
             </header>
 
-            <section>
-                <p>{body}</p>
+            <section >
+                <p>{subject}</p>
             </section>
 
             <footer>
                 <small>{sentAt}</small>
             </footer>
-        </article>
+        </li>
     )
 
 }
