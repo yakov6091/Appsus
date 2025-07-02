@@ -1,0 +1,21 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 10px 10px;
+    margin-top: 1em;
+}
+
+.btn-compose button {
+    border: none;
+    background-color: #c2e7ff;
+    padding: 10px 10px;
+    border-radius: 10px;
+
+
+}
+
+.btn-compose button:hover {
+    cursor: pointer;
+
+}
