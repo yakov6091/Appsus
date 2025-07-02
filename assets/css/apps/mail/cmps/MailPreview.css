@@ -1,6 +1,39 @@
 .mail-preview {
+    display: grid;
+    grid-template-columns: 200px 1fr 120px;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #ccc;
+    padding: 9px 0;
+
+}
+
+.mail-form {
+    font-weight: bold;
+}
+
+.mail-preview section {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
 
+.mail-subject {
+    display: flex;
+    align-items: center;
+    margin-left: 9px;
+}
 
+.mail-body-preview {
+    color: #555;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mail-date {
+    font-size: 0.9em;
+    color: #888;
+    text-align: right;
 }

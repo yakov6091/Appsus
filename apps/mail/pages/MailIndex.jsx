@@ -1,6 +1,7 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 import { Sidebar } from "../cmps/Sidebar.jsx"
+import { SearchBar } from "../cmps/MailSearch.jsx"
 
 const { Outlet, useParams } = ReactRouterDOM
 const { useState, useEffect, Fragment } = React
@@ -34,11 +35,8 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     return (
         <Fragment>
-            {/* <header>
-                <h1>Mail</h1>
-                <label htmlFor="search-bar"></label>
-                <input type="text" name="search-bar" id="search-bar" placeholder="search..."></input>
-            </header> */}
+            <SearchBar />
+
 
             <section className="mail-index" >
                 <Sidebar />
