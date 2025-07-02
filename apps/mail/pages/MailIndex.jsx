@@ -1,21 +1,22 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 import { Sidebar } from "../cmps/Sidebar.jsx"
-import { SearchBar } from "../cmps/MailSearch.jsx"
+import { MailFilter } from "../cmps/MailFilter.jsx"
 
 const { Outlet, useParams } = ReactRouterDOM
 const { useState, useEffect, Fragment } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
-    // const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const { mailId } = useParams()
+
     useEffect(() => {
         loadEmails()
-    }, [])
+    }, [filterBy])
 
     function loadEmails() {
-        mailService.query()
+        mailService.query(filterBy)
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
     }
@@ -31,18 +32,36 @@ export function MailIndex() {
 
     }
 
+    function onToggleStar(mailId) {
+        setMails(mails =>
+            mails.map(mail =>
+                mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
+            )
+        )
+    }
+
+    function onSetFilter(filterBy) { // ex: {txt:'asd'}
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+    }
 
     if (!mails) return <div>Loading...</div>
     return (
         <Fragment>
-            <SearchBar />
 
+            <MailFilter
+                defaultFillter={filterBy}
+                onSetFilter={onSetFilter} />
 
             <section className="mail-index" >
                 <Sidebar />
-                {!mailId ? <MailList mails={mails}
-                    onRemoveMail={onRemoveMail} /> :
-                    <Outlet />}
+                {!mailId ? (<MailList mails={mails}
+                    onRemoveMail={onRemoveMail}
+                    onToggleStar={onToggleStar}
+
+                />) : (
+                    <Outlet />
+                )
+                }
             </section>
 
         </Fragment>

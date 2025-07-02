@@ -1,6 +1,6 @@
 const { useNavigate } = ReactRouterDOM
-export function MailPreview({ mail, onRemove }) {
-    const { from, subject, body, sentAt } = mail
+export function MailPreview({ mail, onRemove, onToggleStar }) {
+    const { from, subject, body, sentAt, isStarred } = mail
     const navigate = useNavigate()
 
     function handleClick() {
@@ -8,8 +8,18 @@ export function MailPreview({ mail, onRemove }) {
 
     }
 
+    function handleStarClick(ev) {
+        ev.stopPropagation()
+        onToggleStar(mail.id)
+    }
+
     return (
         <li className="mail-preview" onClick={handleClick}>
+            <span className={`mail-star${isStarred ? "starred" : ""}`}
+                onClick={handleStarClick}
+                title="Star">
+                <i className={isStarred ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+            </span>
             <header>
                 <h3 className="mail-from">{from}</h3>
             </header>
@@ -22,7 +32,7 @@ export function MailPreview({ mail, onRemove }) {
             <footer>
                 <small className="mail-date">{sentAt}</small>
             </footer>
-        </li>
+        </li >
     )
 
 }

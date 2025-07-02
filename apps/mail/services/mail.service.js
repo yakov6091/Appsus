@@ -21,13 +21,17 @@ export const mailService = {
 
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
-    // .then(mails => {
-    //     if (filterBy.txt) {
-    //         const regExp = new RegExp(filterBy.txt, 'i')
-    //         mails = mails.filter(mail => regExp.test(mail.vendor))
-    //     }
-    //     return mails
-    // })
+        .then(mails => {
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                mails = mails.filter(mail =>
+                    regExp.test(mail.subject) ||
+                    regExp.test(mail.body) ||
+                    regExp.test(mail.from)
+                )
+            }
+            return mails
+        })
 }
 
 function get(mailId) {
@@ -52,7 +56,7 @@ function getEmptyMail(txt = '') {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { subject: '', body: '' }
 }
 
 function _createMails() {
@@ -68,7 +72,8 @@ function _createMails() {
                 sentAt: 1551133930594,
                 removedAt: null,
                 from: 'momo@momo.com',
-                to: 'user@appsus.com'
+                to: 'user@appsus.com',
+                isStarred: false
             },
             {
                 id: utilService.makeId(),
@@ -79,7 +84,8 @@ function _createMails() {
                 sentAt: 1652234930594,
                 removedAt: null,
                 from: 'boss@company.com',
-                to: 'user@appsus.com'
+                to: 'user@appsus.com',
+                isStarred: false
             },
             {
                 id: utilService.makeId(),
@@ -90,7 +96,8 @@ function _createMails() {
                 sentAt: 1641123930594,
                 removedAt: null,
                 from: 'sales@shopnow.com',
-                to: 'user@appsus.com'
+                to: 'user@appsus.com',
+                isStarred: false
             },
             {
                 id: utilService.makeId(),
@@ -101,7 +108,8 @@ function _createMails() {
                 sentAt: 1630012930594,
                 removedAt: null,
                 from: 'friend@travelers.com',
-                to: 'user@appsus.com'
+                to: 'user@appsus.com',
+                isStarred: false
             },
             {
                 id: utilService.makeId(),
@@ -112,7 +120,8 @@ function _createMails() {
                 sentAt: 1629901830594,
                 removedAt: null,
                 from: 'security@safeweb.com',
-                to: 'user@appsus.com'
+                to: 'user@appsus.com',
+                isStarred: false
             }
 
 
