@@ -56,7 +56,7 @@ function getEmptyMail(txt = '') {
 }
 
 function getDefaultFilter() {
-    return { subject: '', body: '' }
+    return { txt: '' }
 }
 
 function _createMails() {

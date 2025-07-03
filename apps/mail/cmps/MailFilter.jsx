@@ -7,14 +7,16 @@ export function MailFilter({ defaultFillter, onSetFilter }) {
 
     function handleChange({ target }) {
         const value = target.value
+        console.log('Filter value:', value)
         setFilterByToEdit(prevFilter => ({ ...prevFilter, txt: value }))
-        onSetFilter({ txt: value })
+        onSetFilter({ txt: value }, console.log({ txt: value }))
+
     }
 
-    const { from, subject, body } = filterByToEdit
     return (
         <section className="mail-filter">
-            <h1>Mail</h1>
+            <h1 className="mail-logo">Mail</h1>
+
             <form onSubmit={ev => ev.preventDefault()}>
                 <label htmlFor="search-bar"></label>
                 <input
@@ -22,7 +24,7 @@ export function MailFilter({ defaultFillter, onSetFilter }) {
                     value={filterByToEdit.txt || ''}
                     type="text"
                     name="txt"
-                    placeholder="search..."></input>
+                    placeholder="Search mail "></input>
             </form>
 
         </section>

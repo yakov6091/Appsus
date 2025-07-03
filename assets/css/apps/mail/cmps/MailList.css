@@ -1,21 +1,27 @@
  .mail-list {
      list-style: none;
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(180, 1fr));
-     /* gap: 10px; */
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 2px 12px rgba(60, 64, 67, 0.08);
+     margin: 32px 32px 32px 0;
+     padding: 0;
+     display: block;
 
  }
 
  .mail-list li {
-     /* border: 2px solid black; */
-     background-color: whitesmoke;
+     background: transparent;
+     padding: 18px 24px;
+     border-bottom: 1px solid #f0f0f0;
      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
      cursor: pointer;
  }
 
+ .mail-list li:last-child {
+     border-bottom: none;
+ }
+
  .mail-list li:hover {
-     background-color: #f5f7fa;
-     box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
      transform: translateY(-2px) scale(1.01);
      z-index: 1;
  }

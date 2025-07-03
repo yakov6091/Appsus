@@ -53,7 +53,9 @@ export function MailIndex() {
                 onSetFilter={onSetFilter} />
 
             <section className="mail-index" >
+
                 <Sidebar />
+
                 {!mailId ? (<MailList mails={mails}
                     onRemoveMail={onRemoveMail}
                     onToggleStar={onToggleStar}
