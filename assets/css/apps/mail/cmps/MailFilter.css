@@ -1,7 +1,7 @@
 .mail-filter {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
     background: #f4f6fb;
     padding: 16px 32px;
     border-bottom: 1px solid #e0e0e0;
@@ -18,8 +18,11 @@
     font-size: 1rem;
     outline: none;
     transition: border 0.2s;
-    margin-left: 16px;
-    background: #e9eef6
+    margin-left: 0;
+    background: #e9eef6;
+
+
+
 }
 
 .mail-filter input[type="text"]:focus {

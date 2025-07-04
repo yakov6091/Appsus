@@ -13,23 +13,25 @@ export function Sidebar() {
                 </button>
             </div>
 
-            <div>
-                <i className="fa-solid fa-inbox"></i>
-                <Link to="/mail/inbox">Inbox</Link>
+            <div className="sidebar-nav">
+
+                <div>
+                    <i className="fa-solid fa-inbox"></i>
+                    <Link to="/mail/inbox">Inbox</Link>
+                </div>
+
+                <div>
+                    <i className="fa-solid fa-star"></i>
+                    <Link to="/mail/starred">Starred</Link>
+                </div>
+
+                <div>
+                    <i className="fa-solid fa-paper-plane"></i>
+                    <Link to="/mail/sent">Sent</Link>
+                </div>
+
             </div>
-
-            <div>
-                <i className="fa-solid fa-star"></i>
-                <Link to="/mail/starred">Starred</Link>
-            </div>
-
-            <div>
-                <i className="fa-solid fa-paper-plane"></i>
-                <Link to="/mail/sent">Sent</Link>
-            </div>
-
-
-        </div>
+        </div >
     )
 
 

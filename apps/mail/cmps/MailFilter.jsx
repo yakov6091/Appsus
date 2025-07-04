@@ -1,6 +1,6 @@
 import { MailService } from "../services/mail.service.js"
 
-const { useState, useEffect } = React
+const { useState } = React
 
 export function MailFilter({ defaultFillter, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFillter })
@@ -15,8 +15,6 @@ export function MailFilter({ defaultFillter, onSetFilter }) {
 
     return (
         <section className="mail-filter">
-            <h1 className="mail-logo">Mail</h1>
-
             <form onSubmit={ev => ev.preventDefault()}>
                 <label htmlFor="search-bar"></label>
                 <input
@@ -28,5 +26,6 @@ export function MailFilter({ defaultFillter, onSetFilter }) {
             </form>
 
         </section>
+
     )
 }

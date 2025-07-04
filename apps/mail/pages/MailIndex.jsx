@@ -47,25 +47,31 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     return (
         <Fragment>
+            <section className="mail-index">
+                <aside>
+                    <div className="mail-logo">
+                        <h1>Mail</h1>
+                    </div>
+                    <Sidebar />
+                </aside>
 
-            <MailFilter
-                defaultFillter={filterBy}
-                onSetFilter={onSetFilter} />
+                <main className="mail-main">
+                    <MailFilter
+                        defaultFillter={filterBy}
+                        onSetFilter={onSetFilter}
+                    />
+                    {!mailId ? (
+                        <MailList
+                            mails={mails}
+                            onRemoveMail={onRemoveMail}
+                            onToggleStar={onToggleStar}
+                        />
+                    ) : (
+                        <Outlet />
+                    )}
+                </main>
 
-            <section className="mail-index" >
-
-                <Sidebar />
-
-                {!mailId ? (<MailList mails={mails}
-                    onRemoveMail={onRemoveMail}
-                    onToggleStar={onToggleStar}
-
-                />) : (
-                    <Outlet />
-                )
-                }
             </section>
-
         </Fragment>
     )
 }
