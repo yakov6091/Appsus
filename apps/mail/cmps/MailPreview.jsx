@@ -1,6 +1,7 @@
 const { useNavigate } = ReactRouterDOM
 export function MailPreview({ mail, onRemove, onToggleStar }) {
     const { from, subject, body, sentAt, isStarred } = mail
+    const formattedDate = new Date(sentAt).toLocaleString()
     const navigate = useNavigate()
 
     function handleClick() {

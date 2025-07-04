@@ -30,6 +30,9 @@ export function Sidebar() {
                     <Link to="/mail/sent">Sent</Link>
                 </div>
 
+
+
+
             </div>
         </div >
     )
