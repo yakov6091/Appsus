@@ -28,7 +28,7 @@ export function MailDetails() {
     if (!mail) return <div>Loading...</div>
     const { subject, body, from, to, sentAt } = mail
     return (
-        <section className="mail-deatails">
+        <section className="mail-details">
             <h1>Mail from: {from} <span>{sentAt}</span></h1>
             <h2>Mail to:{to}</h2>
 

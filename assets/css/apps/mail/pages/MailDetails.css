@@ -1,0 +1,37 @@
+.mail-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+
+}
+
+.mail-details h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+.mail-details h1 span {
+    font-size: 1rem;
+}
+
+.mail-details h2,
+.mail-details h3 {
+    font-size: 1.3rem;
+}
+
+.mail-details p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
