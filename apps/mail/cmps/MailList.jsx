@@ -10,7 +10,7 @@ export function MailList({ mails, onRemoveMail, onToggleStar, onToggleRead }) {
                 <MailPreview
                     key={mail.id}
                     mail={mail}
-                    removeMail={onRemoveMail}
+                    onRemoveMail={onRemoveMail}
                     onToggleStar={onToggleStar}
                     onToggleRead={onToggleRead} />
             )}

@@ -1,6 +1,6 @@
 .mail-preview {
     display: grid;
-    grid-template-columns: 32px 200px 1fr 120px;
+    grid-template-columns: 32px 32px 200px 1fr 120px;
     align-items: center;
     gap: 12px;
     border-bottom: 1px solid #ccc;

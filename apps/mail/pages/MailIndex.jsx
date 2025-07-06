@@ -24,7 +24,7 @@ export function MailIndex() {
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
             .then(() => {
-                setMails(mails => mails.filter(mail => mail.id !== mail.id))
+                setMails(mails => mails.filter(mail => mail.id !== mailId))
             })
             .catch(err => {
                 console.log('err:', err)

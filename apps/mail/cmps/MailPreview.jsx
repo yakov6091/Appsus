@@ -1,6 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 const { useNavigate } = ReactRouterDOM
-export function MailPreview({ mail, onRemove, onToggleStar, onToggleRead }) {
+export function MailPreview({ mail, onRemoveMail, onToggleStar, onToggleRead }) {
 
     const { from, subject, body, sentAt, isStarred } = mail
     const formattedDate = utilService.formattedDate(sentAt)
@@ -17,6 +17,11 @@ export function MailPreview({ mail, onRemove, onToggleStar, onToggleRead }) {
         onToggleStar(mail.id)
     }
 
+    function handleRemoveClick(ev) {
+        ev.stopPropagation()
+        onRemoveMail(mail.id)
+    }
+
     return (
         <li className={`mail-preview ${mail.isRead ? "read" : "unread"}`}
             onClick={handleClick}
@@ -26,6 +31,13 @@ export function MailPreview({ mail, onRemove, onToggleStar, onToggleRead }) {
                 onClick={handleStarClick}
                 title="Star">
                 <i className={isStarred ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+            </span>
+
+            <span
+                className="mail-trash"
+                onClick={handleRemoveClick}
+                title="Delete">
+                <i className="fa-solid fa-trash"></i>
             </span>
 
             <header>
