@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    formattedDate
 }
 
 function saveToStorage(key, val) {
@@ -70,4 +71,23 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function formattedDate(date) {
+    const mailDate = new Date(date)
+    const now = new Date()
+
+    const isToday = mailDate.toDateString() === now.toDateString()
+    const isSameYear = mailDate.getFullYear() === now.getFullYear()
+
+    if (isToday) {
+        // Show time if it's today
+        return mailDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    } else if (isSameYear) {
+        // Show month and day if same year
+        return mailDate.toLocaleDateString([], { month: 'short', day: 'numeric' }) // "Jul 3"
+    } else {
+        // Show month, day and year if from previous years
+        return mailDate.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) // "Jul 3, 2023"
+    }
 }

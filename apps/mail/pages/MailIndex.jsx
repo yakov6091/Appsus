@@ -40,6 +40,14 @@ export function MailIndex() {
         )
     }
 
+    function onToggleRead(mailId) {
+        setMails(prevMails =>
+            prevMails.map(mail =>
+                mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
+            )
+        )
+    }
+
     function onSetFilter(filterBy) { // ex: {txt:'asd'}
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
@@ -65,6 +73,7 @@ export function MailIndex() {
                             mails={mails}
                             onRemoveMail={onRemoveMail}
                             onToggleStar={onToggleStar}
+                            onToggleRead={onToggleRead}
                         />
                     ) : (
                         <Outlet />
