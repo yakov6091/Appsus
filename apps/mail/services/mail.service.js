@@ -22,20 +22,24 @@ export const mailService = {
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
+            let filteredMails = [...mails] //copy of all mails
+
+            //TEXT filter (if present)
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail =>
+                filteredMails = filteredMails.filter(mail =>
                     regExp.test(mail.subject) ||
                     regExp.test(mail.body) ||
                     regExp.test(mail.from)
                 )
-                //'''
-                if (filterBy.isRead !== '' && filterBy.isRead !== undefined) {
-
-                    mails = mails.filter(mail => mail.isRead === filterBy.isRead)
-                }
             }
-            return mails
+            //Apply IS_READ filter (if present and not the empty string default)
+            if (filterBy.isRead !== '' && filterBy.isRead !== undefined) {
+
+                filteredMails = filteredMails.filter(mail => mail.isRead === filterBy.isRead)
+            }
+
+            return filteredMails
         })
 }
 

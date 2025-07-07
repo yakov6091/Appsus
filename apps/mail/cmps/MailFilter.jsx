@@ -1,5 +1,3 @@
-import { MailService } from "../services/mail.service.js"
-
 const { useState, useEffect } = React
 
 export function MailFilter({ defaultFillter, onSetFilter }) {
