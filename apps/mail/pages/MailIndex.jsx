@@ -33,19 +33,50 @@ export function MailIndex() {
     }
 
     function onToggleStar(mailId) {
+        // Find the mail to update before making the copy
+        const mailToUpdate = mails.find(mail => mail.id === mailId)
+        if (!mailToUpdate) return // Should not happen if mailId is valid
+
+        // Create a copy of the mail object with the updated property
+        const updateMail = { ...mailToUpdate, isStarred: !mailToUpdate.isStarred }
+        //Update state first
         setMails(mails =>
             mails.map(mail =>
-                mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
+                mail.id === mailId ? updateMail : mail
             )
         )
+        // Call mailService.save with the single updated mail object
+        mailService.save(updateMail)
+            .then(savedMail => {
+                console.log('Mail star status saved successfully:', savedMail)
+
+            })
+            .catch(err => {
+                console.error('Error saving mail star status:', err)
+
+            })
     }
 
+
     function onToggleRead(mailId) {
+        const mailToUpdate = mails.find(mail => mail.id === mailId)
+        if (!mailToUpdate) return
+
+        //Create a NEW mail object with the toggled 'isRead' property
+        const updatedMail = { ...mailToUpdate, isRead: !mailToUpdate.isRead }
         setMails(prevMails =>
             prevMails.map(mail =>
-                mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
+                mail.id === mailId ? updatedMail : mail // Replace the old mail with the updated one
             )
         )
+        mailService.save(updatedMail)
+            .then(savedMail => {
+                console.log('Mail read status saved successfully to storage:', savedMail)
+            })
+            .catch(err => {
+                console.error('Error saving mail read status to storage:', err)
+            })
+
     }
 
     function onSetFilter(filterBy) { // ex: {txt:'asd'}

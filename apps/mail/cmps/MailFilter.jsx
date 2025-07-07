@@ -1,16 +1,32 @@
 import { MailService } from "../services/mail.service.js"
 
-const { useState } = React
+const { useState, useEffect } = React
 
 export function MailFilter({ defaultFillter, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFillter })
 
-    function handleChange({ target }) {
-        const value = target.value
-        console.log('Filter value:', value)
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, txt: value }))
-        onSetFilter({ txt: value }, console.log({ txt: value }))
+    useEffect(() => {
+        onSetFilter(filterByToEdit)
+    }, [filterByToEdit])
 
+    function handleChange({ target }) {
+        const field = target.name
+        let value = target.value
+        if (field === 'isRead') {
+            value = value === '' ? '' : value === 'true'
+        }
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value
+                break;
+
+
+            case 'checkbox':
+                value = target.checked
+                break
+        }
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
     return (
@@ -25,7 +41,23 @@ export function MailFilter({ defaultFillter, onSetFilter }) {
                     placeholder="Search mail "></input>
             </form>
 
+            <section>
+                <select className="categories"
+                    name="isRead"
+                    value={filterByToEdit.isRead}
+                    onChange={handleChange}
+                >
+                    <option value="">--Please choose an option--</option>
+                    <option value="true">Read mails</option>
+                    <option value="false">Unread mails</option>
+                    {/* <option value="new-mails">New mails</option>
+                    <option value="old-mails">Old mails</option> */}
+                </select>
+            </section>
+
         </section>
 
     )
 }
+
+

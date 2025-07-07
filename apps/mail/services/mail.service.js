@@ -29,6 +29,11 @@ function query(filterBy = {}) {
                     regExp.test(mail.body) ||
                     regExp.test(mail.from)
                 )
+                //'''
+                if (filterBy.isRead !== '' && filterBy.isRead !== undefined) {
+
+                    mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+                }
             }
             return mails
         })
@@ -56,7 +61,7 @@ function getEmptyMail(txt = '') {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { txt: '', isRead: '' }
 }
 
 function _createMails() {

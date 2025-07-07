@@ -46,7 +46,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleStar, onToggleRead }) 
 
             <section >
                 <span className="mail-subject"><b>{subject}</b></span>
-                <span className="mail-body-preview"><b>{body.slice(0, 60)}...</b></span>
+                <span className="mail-body-preview"><b>{body}</b></span>
             </section>
 
             <footer>
