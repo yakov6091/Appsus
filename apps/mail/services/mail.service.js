@@ -39,6 +39,10 @@ function query(filterBy = {}) {
                 filteredMails = filteredMails.filter(mail => mail.isRead === filterBy.isRead)
             }
 
+            // if (filterBy.isStarred) {
+            //     filteredMails = filteredMails.filter(mail => mail.isStarred)
+            // }
+
             return filteredMails
         })
 }

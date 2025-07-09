@@ -1,7 +1,7 @@
-import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 import { Sidebar } from "../cmps/Sidebar.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
+
 
 const { Outlet, useParams } = ReactRouterDOM
 const { useState, useEffect, Fragment } = React
@@ -99,16 +99,13 @@ export function MailIndex() {
                         defaultFillter={filterBy}
                         onSetFilter={onSetFilter}
                     />
-                    {!mailId ? (
-                        <MailList
-                            mails={mails}
-                            onRemoveMail={onRemoveMail}
-                            onToggleStar={onToggleStar}
-                            onToggleRead={onToggleRead}
-                        />
-                    ) : (
-                        <Outlet />
-                    )}
+                    <Outlet context={{
+                        mails,
+                        onRemoveMail,
+                        onToggleRead,
+                        onToggleStar
+                    }} />
+
                 </main>
 
             </section>
