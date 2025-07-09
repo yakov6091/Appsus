@@ -12,14 +12,20 @@ export function MailPreview({ mail, onRemoveMail, onToggleStar, onToggleRead }) 
 
     }
 
-    function handleStarClick(ev) {
-        ev.stopPropagation()
-        onToggleStar(mail.id)
-    }
+    function handleActionClick(ev, actionType) {
+        ev.stopPropagation(); // Stop event propagation for all actions handled here
 
-    function handleRemoveClick(ev) {
-        ev.stopPropagation()
-        onRemoveMail(mail.id)
+        switch (actionType) {
+            case 'remove':
+                onRemoveMail(mail.id);
+                break;
+            case 'toggleStar':
+                onToggleStar(mail.id);
+                break;
+            // Add more cases here if you have other similar actions
+            default:
+                console.warn('Unknown action type:', actionType);
+        }
     }
 
     return (
@@ -28,14 +34,14 @@ export function MailPreview({ mail, onRemoveMail, onToggleStar, onToggleRead }) 
         >
 
             <span className={`mail-star ${isStarred ? "starred" : ""}`}
-                onClick={handleStarClick}
+                onClick={(ev) => handleActionClick(ev, 'toggleStar')}
                 title="Star">
                 <i className={isStarred ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
             </span>
 
             <span
                 className="mail-trash"
-                onClick={handleRemoveClick}
+                onClick={(ev) => handleActionClick(ev, 'remove')}
                 title="Delete">
                 <i className="fa-solid fa-trash"></i>
             </span>

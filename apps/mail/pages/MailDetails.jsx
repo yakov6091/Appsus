@@ -45,14 +45,47 @@ export function MailDetails() {
     const formattedDate = new Date(sentAt).toLocaleString()
     return (
         <section className="mail-details">
-            <button className="back" onClick={() => onBack()}><i className="fa-solid fa-arrow-left"></i></button>
-            <button className="trash" onClick={() => onRemoveMail(mail.id)}><i className="fa-solid fa-trash"></i></button>
-            <h1>Mail from: {from} <span>{formattedDate}</span></h1>
-            <h2>Mail to:{to}</h2>
 
-            <h3>Subject: {subject}</h3>
+            {/* Header with actions and possibly the subject line */}
+            <div className="mail-details-header">
 
-            <p>{body}</p>
+                <div className="mail-details-actions">
+                    <button className="back-btn" onClick={() => onBack()} title="Back to Inbox">
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button className="trash-btn" onClick={() => onRemoveMail(mail.id)} title="Delete Mail">
+                        <i className="fa-solid fa-trash"></i>
+                    </button>
+
+                </div>
+            </div>
+
+            {/* Mail Metadata (Sender, Recipient, Date) */}
+            <div className="mail-details-meta">
+                <h2 className="mail-details-subject">{subject}</h2>
+
+                <div className="mail-details-from-date-wrapper">
+                    <div className="mail-details-from">
+                        <span className="label">From:</span>
+                        <span className="value">{from}</span>
+                    </div>
+                    <div className="mail-details-date">
+                        <span className="value">{formattedDate}</span>
+                    </div>
+                </div>
+
+                <div className="mail-details-to">
+                    <span className="label">To:</span>
+                    <span className="value">{to}</span>
+                </div>
+
+            </div>
+
+            {/* Mail Body */}
+            <div className="mail-details-body">
+                <p>{body}</p>
+            </div>
+
         </section>
     )
 }
