@@ -1,21 +1,14 @@
 import { MailCompose } from "./MailCompose.jsx"
-const { useParams, Link } = ReactRouterDOM
-const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
+const { useState } = React
 
-export function Sidebar() {
+export function Sidebar({ onSendMail }) {
     const [isComposeOpen, setIsComposeOpen] = useState(false)
-
-    function onMailCompose() {
-        setIsComposeOpen(true)
-
-    }
-
-
 
     return (
         <div className="sidebar">
             <div className="btn-compose">
-                <button onClick={onMailCompose}>
+                <button onClick={() => setIsComposeOpen(true)}>
                     <i className="fa-solid fa-pencil"></i>Compose
                 </button>
             </div>
@@ -38,7 +31,14 @@ export function Sidebar() {
                 </div>
             </div>
 
-            {isComposeOpen && <MailCompose onClose={() => setIsComposeOpen(false)} />}
+            {isComposeOpen &&
+                <MailCompose
+                    onClose={() => setIsComposeOpen(false)}
+                    onSendMail={() => {
+                        if (typeof onSendMail === 'function') onSendMail()
+                        setIsComposeOpen(false)
+                    }}
+                />}
         </div >
     )
 

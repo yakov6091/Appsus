@@ -1,17 +1,24 @@
 import { mailService } from "../services/mail.service.js"
 const { useState } = React
-export function MailCompose({ onClose }) {
-    const [form, setForm] = useState({
-        from: mailService.loggedinUser.email,
-        to: '',
-        subject: '',
-        body: ''
-    })
+
+export function MailCompose({ onClose, onSendMail }) {
+    const [form, setForm] = useState(mailService.getEmptyMail())
+
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        alert('Email Sent')
-        onClose()
+
+        form.sentAt = Date.now()
+        mailService.save(form)
+            .then(() => {
+                if (typeof onSendMail === 'function') onSendMail()
+                if (typeof onClose === 'function') onClose()
+                setForm(mailService.getEmptyMail())
+            })
+            .catch((err) => {
+                console.log('err', err)
+            })
+
     }
 
     function handleChange(ev) {
@@ -45,7 +52,7 @@ export function MailCompose({ onClose }) {
             </main>
 
             <div className="action-btn">
-                <button tupe="submit">Send</button>
+                <button type="submit">Send</button>
             </div>
 
         </form>

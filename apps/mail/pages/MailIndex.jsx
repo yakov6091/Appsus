@@ -12,10 +12,10 @@ export function MailIndex() {
     const { mailId } = useParams()
 
     useEffect(() => {
-        loadEmails()
+        loadMails()
     }, [filterBy])
 
-    function loadEmails() {
+    function loadMails() {
         mailService.query(filterBy)
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
@@ -91,12 +91,12 @@ export function MailIndex() {
                     <div className="mail-logo">
                         <h1>Mail</h1>
                     </div>
-                    <Sidebar />
+                    <Sidebar onSendMail={loadMails} />
                 </aside>
 
                 <main className="mail-main">
                     <MailFilter
-                        defaultFillter={filterBy}
+                        defaultFilter={filterBy}
                         onSetFilter={onSetFilter}
                     />
                     <Outlet context={{

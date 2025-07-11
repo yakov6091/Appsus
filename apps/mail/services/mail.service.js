@@ -25,6 +25,7 @@ function query(filterBy = {}) {
         .then(mails => {
             let filteredMails = [...mails] //copy of all mails
 
+
             //TEXT filter (if present)
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
@@ -43,6 +44,9 @@ function query(filterBy = {}) {
             // if (filterBy.isStarred) {
             //     filteredMails = filteredMails.filter(mail => mail.isStarred)
             // }
+
+            //Sort mails by sentAt descending
+            filteredMails.sort((a, b) => b.sentAt - a.sentAt)
 
             return filteredMails
         })
@@ -66,8 +70,16 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(txt = '') {
-    return { txt }
+function getEmptyMail() {
+    return {
+        subject: '',
+        body: '',
+        from: loggedinUser.email,
+        to: '',
+        isRead: false,
+        sentAt: Date.now(),
+        isStarred: false
+    }
 }
 
 function getDefaultFilter() {

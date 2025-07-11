@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 
-export function MailFilter({ defaultFillter, onSetFilter }) {
-    const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFillter })
+export function MailFilter({ defaultFilter, onSetFilter }) {
+    const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
