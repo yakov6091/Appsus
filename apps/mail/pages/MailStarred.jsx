@@ -7,7 +7,7 @@ export function MailStarred() {
     // Filter the mails to show only starred ones
     const starredMails = mails ? mails.filter(mail => mail.isStarred) : [];
 
-    if (!mails) return <div>Loading starred emails...</div>;
+    if (!mails) return <div>Loading starred mails...</div>;
     return (
         <section className="mail-starred">
             <MailList

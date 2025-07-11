@@ -12,6 +12,7 @@ import { MailIndex } from './apps/mail/pages/MailIndex.jsx'
 import { MailDetails } from './apps/mail/pages/MailDetails.jsx'
 import { MailStarred } from './apps/mail/pages/MailStarred.jsx'
 import { MailInbox } from './apps/mail/pages/MailInbox.jsx'
+import { MailSent } from './apps/mail/pages/MailSent.jsx'
 
 export function RootCmp() {
     return <Router>
@@ -24,7 +25,7 @@ export function RootCmp() {
                     <Route path=":mailId" element={<MailDetails />} />
                     <Route path="inbox" element={<MailInbox />} />
                     <Route path="starred" element={<MailStarred />} />
-                    {/* <Route path="mail/sent" element={<MailSent />} /> */}
+                    <Route path="sent" element={<MailSent />} />
 
 
                 </Route>

@@ -78,7 +78,8 @@ function getEmptyMail() {
         to: '',
         isRead: false,
         sentAt: Date.now(),
-        isStarred: false
+        isStarred: false,
+        isSent: true
     }
 }
 
