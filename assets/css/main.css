@@ -15,4 +15,5 @@
 @import './apps/mail/pages/MailIndex.css';
 @import './apps/mail/cmps/Sidebar.css';
 @import './apps/mail/cmps/MailFilter.css';
+@import './apps/mail/cmps/mailCompose.css';
 @import './apps/mail/pages/MailDetails.css';

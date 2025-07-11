@@ -1,14 +1,21 @@
+import { MailCompose } from "./MailCompose.jsx"
 const { useParams, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function Sidebar() {
+    const [isComposeOpen, setIsComposeOpen] = useState(false)
+
+    function onMailCompose() {
+        setIsComposeOpen(true)
+
+    }
 
 
 
     return (
         <div className="sidebar">
             <div className="btn-compose">
-                <button>
+                <button onClick={onMailCompose}>
                     <i className="fa-solid fa-pencil"></i>Compose
                 </button>
             </div>
@@ -29,11 +36,9 @@ export function Sidebar() {
                     <i className="fa-solid fa-paper-plane"></i>
                     <Link to="/mail/sent">Sent</Link>
                 </div>
-
-
-
-
             </div>
+
+            {isComposeOpen && <MailCompose onClose={() => setIsComposeOpen(false)} />}
         </div >
     )
 

@@ -1,0 +1,77 @@
+.new-compose {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    bottom: 20px;
+    right: 20px;
+    width: 500px;
+    z-index: 1000;
+
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.new-compose .header {
+    display: flex;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #f1f3f4;
+    padding: 10px 12px;
+    font-weight: bold;
+}
+
+.new-compose .header button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.header button:hover {
+    background-color: #c9cfd8;
+}
+
+.new-compose main {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 10px;
+}
+
+.new-compose input,
+.new-compose textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+}
+
+.new-compose textarea {
+    height: 120px;
+
+}
+
+.new-compose .action-btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 12px;
+    border-radius: 1px solid #ccc;
+    background-color: #f1f3f4;
+}
+
+.new-compose .action-btn button {
+    padding: 6px 16px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}

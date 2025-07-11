@@ -16,7 +16,8 @@ export const mailService = {
     save,
     getEmptyMail,
     getDefaultFilter,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    loggedinUser
 }
 
 function query(filterBy = {}) {
